@@ -1,22 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+var multer = require('multer');
+var subscription = require('../lib/subscription.js');
 
-router.post('/upload', function(req, res) {
+var upload = multer({ dest: 'uploads/csvs/' });
+
+router.post('/upload', upload.single('sampleFile'), function(req, res) {
   var sampleFile;
  
-  if (!req.files) {
+  if (!req.file) {
     res.send('No files were uploaded.');
     return;
   }
-  sampleFile = req.files.sampleFile;
-  sampleFile.mv('./uploads/csvs/', function(err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-    else {
-      res.send('File uploaded!');
-    }
-  });
+  sampleFile = req.file;
+  subscription.upload(sampleFile.path);
+  res.send('File uploaded!');
 });
 
 /* GET home page. */
