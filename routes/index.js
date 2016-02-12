@@ -14,7 +14,7 @@ router.post('/upload', upload.single('sampleFile'), function(req, res) {
     return;
   }
   sampleFile = req.file;
-  subscription.upload(sampleFile.path);
+  subscription.upload(sampleFile.path, req.body.subject);
   res.send('File uploaded!');
 });
 
