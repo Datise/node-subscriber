@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Enter You CSV
+  p HELLO
+  form(method='post', encType='multipart/form-data', action='http://localhost:3000/upload')
+    input(type="file", name="sampleFile")
+    input(type='submit', value='Upload!')
