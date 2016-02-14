@@ -3,7 +3,7 @@ extends layout
 block content
   h1 Enter You CSV
   p HELLO
+  p remaining #{remaining}
   form(method='post', encType='multipart/form-data', action='/upload')
     input(type="file", name="sampleFile")
-    input(tyep="text", name="subject")
     input(type='submit', value='Upload!')

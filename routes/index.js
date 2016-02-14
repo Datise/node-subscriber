@@ -14,7 +14,7 @@ router.post('/upload', upload.single('sampleFile'), function(req, res) {
     return;
   }
   sampleFile = req.file;
-  subscription.upload(sampleFile.path, req.body.subject);
+  subscription.upload(sampleFile.path);
   res.send('File uploaded!');
 });
 
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: "Build your company with information"});
 });
 router.get('/our_work', function(req, res){
-  res.render('csv', {title: "Upload CSV"})
+  res.render('csv', {title: "Upload CSV", remaining : subscription.remaining});
 })
 
 module.exports = router;
