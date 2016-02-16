@@ -3,7 +3,15 @@ extends layout
 block content
   h1 Enter You CSV
   p HELLO
-  p remaining filtered emails: #{remaining}
+  button(type="button" class="btn btn-success") Refresh
+  p(class="remaining") remaining filtered emails: #{remaining}
   form(method='post', encType='multipart/form-data', action='/upload')
     input(type="file", name="sampleFile")
     input(type='submit', value='Upload!')
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+  script.
+    $(".btn").click((e) => {
+        $.get('/remaining', (data, status) => {
+        	$(".remaining").text('remaining filtered emails: ' + data.remaining);
+        });
+    });

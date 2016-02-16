@@ -18,6 +18,10 @@ router.post('/upload', upload.single('sampleFile'), function(req, res) {
   res.send('File uploaded!');
 });
 
+router.get('/remaining', function(req, res){
+  res.json({remaining : subscription.remaining});
+});
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: "Build your company with information"});
