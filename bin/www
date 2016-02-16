@@ -6,5 +6,6 @@ var subscription = require('../lib/subscription.js');
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
+  subscription.send_email();
   debug('Express server listening on port ' + server.address().port);
 });
