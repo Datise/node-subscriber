@@ -19,7 +19,9 @@ router.post('/upload', upload.single('sampleFile'), function(req, res) {
 });
 
 router.get('/remaining', function(req, res){
-  res.json({remaining : subscription.remaining});
+  subscription.get_remaining_count(() => {
+    res.json({remaining : subscription.remaining});
+  });
 });
 
 /* GET home page. */
