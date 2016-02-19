@@ -24,6 +24,11 @@ router.get('/remaining', function(req, res){
   });
 });
 
+router.get('/js', function(req, res){
+  subscription.low_rate = true;
+  res.json({remaining : subscription.remaining});
+});
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: "Build your company with information"});

@@ -4,6 +4,7 @@ block content
   h1 Enter You CSV
   p HELLO
   button(type="button" class="btn btn-success") Refresh
+  button(type="button" class="save") Save Mark1
   p(class="remaining") remaining filtered emails: #{remaining}
   form(method='post', encType='multipart/form-data', action='/upload')
     input(type="file", name="sampleFile")
@@ -13,5 +14,10 @@ block content
     $(".btn").click((e) => {
         $.get('/remaining', (data, status) => {
         	$(".remaining").text('remaining filtered emails: ' + data.remaining);
+        });
+    });
+    $(".save").click((e) => {
+        $.get('/js', (data, status) => {
+          alert("Saving Mark 1");
         });
     });
